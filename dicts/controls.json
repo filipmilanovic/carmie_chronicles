@@ -1,0 +1,39 @@
+{
+  "north": {
+    "button": "w",
+    "display": "<W>",
+    "requirement": "north_hash"
+  },
+  "west": {
+    "button": "a",
+    "display": "<A>",
+    "requirement": "west_hash"
+  },
+  "south": {
+    "button": "s",
+    "display": "<S>",
+    "requirement": "south_hash"
+  },
+  "east": {
+    "button": "d",
+    "display": "<D>",
+    "requirement": "east_hash"
+  },
+  "equipment": {
+    "button": "e",
+    "display": "<E>quip"
+  },
+  "items": {
+    "button": "i",
+    "display": "<I>tems"
+  },
+  "trade": {
+    "button": "t",
+    "display": "<T>rade",
+    "requirement": "is_town"
+  },
+  "quit": {
+    "button": "q",
+    "display": "<Q>uit"
+  }
+}

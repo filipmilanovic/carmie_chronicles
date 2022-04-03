@@ -1,0 +1,17 @@
+{
+  "dagger": {
+    "item_id": 1000,
+    "info": {
+      "name": "kindly_dagger",
+      "class": "weapon",
+      "type": "dagger",
+      "value": 10
+    },
+    "stats": {
+      "attack": 5,
+      "defence": 0,
+      "magic": 0,
+      "agility": 5
+    }
+  }
+}
