@@ -1,7 +1,7 @@
 import json
-from classes.cells import cell_dict
+from src.classes.cells import cell_dict
 
-with open('../dicts/controls.json', 'r') as file:
+with open('../src/dicts/controls.json', 'r') as file:
     controls = json.load(file)
 
 
@@ -21,7 +21,7 @@ class ActionSet:
         """get the valid actions for the screen given the current attributes of the screen"""
         actions = input_dict.values()
         return [action.get(output) for action in actions if eval(action.get('requirement', 'hash'),
-                                                                 self.player.current_screen.__dict__)]
+                                                                 self.player.current_cell.__dict__)]
 
     def set_actions(self):
         """generate allowed key-presses to send to the Player, as well as the display for the interface"""

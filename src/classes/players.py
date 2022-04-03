@@ -1,16 +1,16 @@
 import json
 import random
-from classes.actions import ActionSet
-from classes.equipment import Equipment
-from classes.maps import map_dict
+from src.classes.actions import ActionSet
+from src.classes.equipment import Equipment
+from src.classes.maps import map_dict
 
-with open('../dicts/attributes.json', 'r') as file:
+with open('../src/dicts/attributes.json', 'r') as file:
     attributes = json.load(file)
 
-with open('../dicts/weapons.json', 'r') as file:
+with open('../src/dicts/weapons.json', 'r') as file:
     weapons = json.load(file)
 
-with open('../dicts/armour.json', 'r') as file:
+with open('../src/dicts/armour.json', 'r') as file:
     armour = json.load(file)
 
 player_dict = {}

@@ -1,4 +1,4 @@
-from classes.cells import Cell
+from src.classes.cells import Cell
 import numpy as np
 from random import sample
 

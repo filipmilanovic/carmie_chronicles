@@ -1,4 +1,4 @@
-from classes.cells import Cell
+from src.classes.cells import Cell
 
 
 def test_create_cell():

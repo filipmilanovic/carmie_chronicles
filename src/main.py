@@ -1,4 +1,4 @@
-from classes.interface import Interface
+from src.classes.interface import Interface
 
 game = Interface()
 game.generate_map(rows=5,
