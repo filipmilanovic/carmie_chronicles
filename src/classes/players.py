@@ -1,84 +1,64 @@
 import json
 import random
-from src.classes.actions import ActionSet
-from src.classes.equipment import Equipment
-from src.classes.maps import map_dict
+
+from src.classes.player_inventory import PlayerInventory
 
 with open('../src/dicts/attributes.json', 'r') as file:
     attributes = json.load(file)
-
-with open('../src/dicts/weapons.json', 'r') as file:
-    weapons = json.load(file)
-
-with open('../src/dicts/armour.json', 'r') as file:
-    armour = json.load(file)
 
 player_dict = {}
 
 
 class Player:
     def __init__(self,
-                 map_hash: int):
+                 starting_map):
         self.hash = hash(self)
 
-        # Player stats
+        # PLAYER STATS
         self.set_default_stats()
 
-        # Player equipped
+        # PLAYER EQUIPPED
         self.weapon = None
         self.shield = None
         self.head = None
         self.body = None
         self.legs = None
 
-        # Player inventory
-        self.inventory = []
-        [self.add_item(Equipment(item)) for item in weapons.values() if item['item_id'] in [1000]]
-        [self.add_item(Equipment(item)) for item in armour.values() if item['item_id'] in [2000, 3000, 4000]]
+        # PLAYER INVENTORY
+        self.player_inventory = PlayerInventory(self)
+        self.selected_item = None
 
-        # Map and Screen information
-        self.map = map_dict[map_hash]
+        # LOCATION INFORMATION
+        self.map = starting_map
         self.current_cell = random.choice(self.map.cells)
         self.current_cell.update_appearance(True)
         self.map.generate_grid()
 
-        # Actions
-        self.current_screen = 'map'
-        self.actions = ActionSet(self)
-        self.actions.set_actions()
+        # ACTIONS
+        self.current_screen = self.map
+        self.path_to_screen = [self.current_screen]
 
     """CHARACTER INFORMATION"""
     def set_default_stats(self):
         [setattr(self, attr['name'], attr['default']) for attr in attributes.values()]
 
-    """MOVEMENT"""
+    """ACTIONS"""
+    def get_actions(self):
+        if self.current_screen.__class__.__name__ == 'Map':
+            self.current_cell.set_actions()
+            return self.current_cell.actions.actions_display
+        elif self.current_screen.__class__.__name__ == 'PlayerInventory':
+            self.player_inventory.set_actions()
+            return self.player_inventory.actions.actions_display
+        elif self.current_screen.__class__.__name__ == 'Equipment':
+            self.selected_item.set_actions()
+            return self.selected_item.actions.actions_display
 
-    """INVENTORY"""
-    def add_item(self,
-                 item):
-        self.inventory.append(item)
-
-    def show_inventory(self):
-        print([[item.info['name'], item.info['class']] for item in self.inventory])
-
-    """EQUIPMENT"""
-    def equip_item(self,
-                   equipment_dict: dict,
-                   equipment_name: str):
-        item = Equipment(equipment_dict[equipment_name])
-        setattr(self, item.info['class'], item)
-
-    def show_equipment(self):
-        print(f'''
-                       ___ {self.head}
-                      |   |
-                      |   |   |
-                       ---    | {self.weapon}
-                        |     |
-                   -----------|
-                        |
-                        |  {self.body}
-                        |
-                       / \\
-                      /   \\    {self.legs}
-                     /     \\ ''')
+    def perform_action(self,
+                       key_input: str):
+        if self.current_screen.__class__.__name__ == 'Map':
+            self.current_cell.perform_action(self, key_input)
+        elif self.current_screen.__class__.__name__ == 'PlayerInventory':
+            self.player_inventory.perform_action(key_input)
+        elif self.current_screen.__class__.__name__ == 'Equipment':
+            self.selected_item.perform_action(self, key_input)

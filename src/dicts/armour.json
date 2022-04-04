@@ -1,5 +1,5 @@
 {
-  "shirt": {
+  "kindly_shirt": {
     "item_id": 2000,
     "info": {
       "name": "kindly_shirt",
@@ -9,13 +9,13 @@
     },
     "stats": {
       "attack": 0,
-      "defence": 5,
+      "defence": 10,
       "magic": 0,
-      "agility": 5
+      "agility": 10
     }
   },
 
-  "pants": {
+  "kindly_pants": {
     "item_id": 3000,
     "info": {
       "name": "kindly_pants",
@@ -25,13 +25,13 @@
     },
     "stats": {
       "attack": 0,
-      "defence": 5,
+      "defence": 10,
       "magic": 0,
-      "agility": 5
+      "agility": 10
     }
   },
 
-  "hat": {
+  "kindly_hat": {
     "item_id": 4000,
     "info": {
       "name": "kindly_hat",
@@ -41,7 +41,103 @@
     },
     "stats": {
       "attack": 0,
+      "defence": 10,
+      "magic": 0,
+      "agility": 10
+    }
+  },
+
+  "light_shirt": {
+    "item_id": 2001,
+    "info": {
+      "name": "light_shirt",
+      "class": "body",
+      "type": "light",
+      "value": 10
+    },
+    "stats": {
+      "attack": 0,
       "defence": 5,
+      "magic": 0,
+      "agility": 15
+    }
+  },
+
+  "light_pants": {
+    "item_id": 3001,
+    "info": {
+      "name": "light_pants",
+      "class": "legs",
+      "type": "light",
+      "value": 10
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 5,
+      "magic": 0,
+      "agility": 15
+    }
+  },
+
+  "light_hat": {
+    "item_id": 4001,
+    "info": {
+      "name": "light_hat",
+      "class": "head",
+      "type": "light",
+      "value": 10
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 5,
+      "magic": 0,
+      "agility": 15
+    }
+  },
+
+  "heavy_shirt": {
+    "item_id": 2002,
+    "info": {
+      "name": "heavy_shirt",
+      "class": "body",
+      "type": "heavy",
+      "value": 10
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 15,
+      "magic": 0,
+      "agility": 5
+    }
+  },
+
+  "heavy_pants": {
+    "item_id": 3002,
+    "info": {
+      "name": "heavy_pants",
+      "class": "legs",
+      "type": "heavy",
+      "value": 10
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 15,
+      "magic": 0,
+      "agility": 5
+    }
+  },
+
+  "heavy_hat": {
+    "item_id": 4002,
+    "info": {
+      "name": "heavy_hat",
+      "class": "head",
+      "type": "heavy",
+      "value": 10
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 15,
       "magic": 0,
       "agility": 5
     }
