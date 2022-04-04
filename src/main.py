@@ -7,6 +7,6 @@ game.generate_map(rows=5,
 game.generate_player()
 
 while True:
-    print(game.get_actions())
+    game.get_actions()
     x = input()
-    game.player.actions.actions_map(x)
+    game.perform_action(x)

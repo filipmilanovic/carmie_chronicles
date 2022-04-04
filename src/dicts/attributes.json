@@ -3,42 +3,49 @@
     "name": "level",
     "display": "Level",
     "description": "The characters level",
-    "default": 1
+    "default": 1,
+    "equipment": false
   },
   "experience": {
     "name": "experience",
     "Display": "XP",
     "description": "The amount of experience the character has gained",
-    "default": 0
+    "default": 0,
+    "equipment": false
   },
   "health": {
     "name": "health",
     "display": "Health",
     "description": "The amount of damage the character can take before dying",
-    "default": 100
+    "default": 100,
+    "equipment": false
   },
   "attack": {
     "name": "attack",
     "display": "Attack",
     "description": "Influences the amount of damage the character can deal with physical attacks",
-    "default": 10
+    "default": 10,
+    "equipment": true
   },
   "defence": {
     "name": "defence",
     "display": "Defence",
     "description": "Influences the amount of damage the character takes from physical attacks",
-    "default": 10
+    "default": 10,
+    "equipment": true
   },
   "magic": {
     "name": "magic",
     "display": "Magic",
     "description": "Influences the amount of damage the character deals and takes from magical attacks",
-    "default": 10
+    "default": 10,
+    "equipment": true
   },
   "agility": {
     "name": "agility",
     "display": "Agility",
     "description": "Influence how frequently the character attacks, how likely the character is to land an attack, and how likely the character is to dodge an attack",
-    "default": 10
+    "default": 10,
+    "equipment": true
   }
 }

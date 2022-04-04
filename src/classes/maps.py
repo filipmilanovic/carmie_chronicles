@@ -1,12 +1,13 @@
-from src.classes.cells import Cell
 import numpy as np
 from random import sample
+
+from src.classes.cells import Cell
 
 map_dict = {}
 
 
 class Map:
-    """a Map class object, comprised of a series of Cells to generate a grid"""
+    """Map class object, comprised of a series of Cells to generate a grid"""
     instances = []
 
     def __init__(self,
@@ -38,7 +39,6 @@ class Map:
     def generate_grid(self):
         """reshape list of Cells into a grid"""
         self.grid = np.reshape([cell.appearance for cell in self.cells], (self.rows, self.cols))
-        print(self.grid)
 
     def link_cells(self):
         """provide mapping of Cells to other Cells, then generate possible actions"""
@@ -52,3 +52,6 @@ class Map:
                 current_cell.north_hash = self.cells[cell - self.cols].hash
             if cell < (self.cols-1) * self.rows:
                 current_cell.south_hash = self.cells[cell + self.cols].hash
+
+    def print(self):
+        print(self.grid)

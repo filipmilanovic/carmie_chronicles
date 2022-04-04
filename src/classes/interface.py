@@ -18,8 +18,12 @@ class Interface:
                        towns=towns)
 
     def generate_player(self):
-        self.player = Player(map_hash=self.map.hash)
+        self.player = Player(self.map)
 
     def get_actions(self):
-        # ActionSet.update_actions(self.player)
-        return f'What would you like to do? {self.player.actions.actions_display}'
+        self.player.current_screen.print()
+        print(f'What would you like to do? {self.player.get_actions()}')
+
+    def perform_action(self,
+                       key_input: str):
+        self.player.perform_action(key_input)
