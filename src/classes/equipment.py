@@ -1,3 +1,4 @@
+import os
 from tabulate import tabulate
 
 from src.classes.actions import ActionSet
@@ -19,6 +20,7 @@ class Equipment:
 
     # ITEM OPERATIONS
     def print(self):
+        os.system('clear')
         print(tabulate([row for row in (self.info | self.stats).items()], headers=['key', 'value']))
 
     def equip_status(self,

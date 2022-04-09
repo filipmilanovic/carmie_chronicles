@@ -1,4 +1,5 @@
 import json
+import os
 from tabulate import tabulate
 
 from src.classes.actions import ActionSet
@@ -49,6 +50,8 @@ class PlayerInventory:
                             (1 + self.menu_page) * 9 if not (self.menu_page == self.menu_pages - 1)
                             else self.menu_page * 9 + len(self.items) % 9)
         print_items = [self.items[i] for i in print_range]
+
+        os.system('clear')
         print(tabulate([[self.items.index(item) + 1 - 9 * self.menu_page,
                          item.info['name'],
                          item.info['class'],

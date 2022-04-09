@@ -1,4 +1,5 @@
 import numpy as np
+import os
 from random import sample
 
 from src.classes.cells import Cell
@@ -54,4 +55,5 @@ class Map:
                 current_cell.south_hash = self.cells[cell + self.cols].hash
 
     def print(self):
+        os.system('clear')
         print(self.grid)
