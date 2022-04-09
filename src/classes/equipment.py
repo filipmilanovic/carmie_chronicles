@@ -1,7 +1,7 @@
 import os
 from tabulate import tabulate
 
-from src.classes.actions import ActionSet
+from classes.actions import ActionSet
 
 
 class Equipment:

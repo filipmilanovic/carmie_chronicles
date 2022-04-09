@@ -2,7 +2,7 @@ import numpy as np
 import os
 from random import sample
 
-from src.classes.cells import Cell
+from classes.cells import Cell
 
 map_dict = {}
 

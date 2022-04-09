@@ -2,8 +2,8 @@ import json
 import os
 from tabulate import tabulate
 
-from src.classes.actions import ActionSet
-from src.classes.equipment import Equipment
+from classes.actions import ActionSet
+from classes.equipment import Equipment
 
 with open('src/dicts/weapons.json', 'r') as file:
     weapons = json.load(file)
