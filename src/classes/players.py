@@ -3,7 +3,7 @@ import random
 
 from src.classes.player_inventory import PlayerInventory
 
-with open('../src/dicts/attributes.json', 'r') as file:
+with open('src/dicts/attributes.json', 'r') as file:
     attributes = json.load(file)
 
 player_dict = {}

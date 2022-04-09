@@ -2,7 +2,7 @@ import json
 
 from src.classes.actions import ActionSet
 
-with open('../src/dicts/controls.json', 'r') as file:
+with open('src/dicts/controls.json', 'r') as file:
     controls = json.load(file)
 
 cell_dict = {}

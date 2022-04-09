@@ -4,13 +4,13 @@ from tabulate import tabulate
 from src.classes.actions import ActionSet
 from src.classes.equipment import Equipment
 
-with open('../src/dicts/weapons.json', 'r') as file:
+with open('src/dicts/weapons.json', 'r') as file:
     weapons = json.load(file)
 
-with open('../src/dicts/armour.json', 'r') as file:
+with open('src/dicts/armour.json', 'r') as file:
     armour = json.load(file)
 
-with open('../src/dicts/attributes.json', 'r') as file:
+with open('src/dicts/attributes.json', 'r') as file:
     attributes = json.load(file)
 
 
