@@ -1,0 +1,71 @@
+{
+  "weapon": {
+    "id": 1000,
+    "info": {
+      "class": "weapon",
+      "value": 100
+    },
+    "stats": {
+      "attack": 10,
+      "defence": 0,
+      "magic": 0,
+      "agility": 0
+    }
+  },
+  
+  "body": {
+    "id": 3000,
+    "info": {
+      "class": "body",
+      "value": 100
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 10,
+      "magic": 0,
+      "agility": 0
+    }
+  },
+
+  "legs": {
+    "id": 4000,
+    "info": {
+      "class": "legs",
+      "value": 50
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 6,
+      "magic": 0,
+      "agility": 0
+    }
+  },
+
+  "head": {
+    "id": 5000,
+    "info": {
+      "class": "head",
+      "value": 20
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 4,
+      "magic": 0,
+      "agility": 0
+    }
+  },
+
+  "shield": {
+    "id": 6000,
+    "info": {
+      "class": "shield",
+      "value": 50
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 5,
+      "magic": 0,
+      "agility": 0
+    }
+  }
+}

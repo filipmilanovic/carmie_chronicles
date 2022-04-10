@@ -3,7 +3,7 @@ print(os.getcwd())
 
 import json
 
-with open('src/dicts/controls.json', 'r') as file:
+with open('src/dicts/control.json', 'r') as file:
     controls = json.load(file)
 
 
