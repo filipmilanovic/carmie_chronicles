@@ -1,15 +1,28 @@
+import json
+import math
+import os
 from tabulate import tabulate
 
-from src.classes.actions import ActionSet
+from classes.action import ActionSet
+
+with open('src/dicts/equipment_class.json', 'r') as file:
+    classes = json.load(file)
+
+with open('src/dicts/equipment_collection.json', 'r') as file:
+    collections = json.load(file)
+
+with open('src/dicts/equipment_type.json', 'r') as file:
+    types = json.load(file)
 
 
 class Equipment:
     def __init__(self,
-                 equipment_dict: dict):
+                 equipment_type,
+                 equipment_collection):
         self.hash = hash(self)
-        self.id = equipment_dict['item_id']
-        self.info = equipment_dict['info']
-        self.stats = equipment_dict['stats']
+        self.equipment_type = equipment_type
+        self.equipment_collection = equipment_collection
+        self.id, self.info, self.stats = self.set_equipment_details()
         self.is_equipped = False
 
         self.actions = ActionSet()
@@ -19,7 +32,30 @@ class Equipment:
 
     # ITEM OPERATIONS
     def print(self):
+        os.system('clear')
         print(tabulate([row for row in (self.info | self.stats).items()], headers=['key', 'value']))
+    
+    def set_equipment_details(self):
+        collection_data = collections[self.equipment_collection]
+        type_data = types[self.equipment_type]
+        class_data = classes[type_data['info']['class']]
+
+        equipment_id = class_data['id'] + type_data['id'] + collection_data['id']
+
+        equipment_info = {
+            'name': ' '.join([json_dict['info']['name'] for json_dict in [collection_data, type_data]]),
+            'class': class_data['info']['class'],
+            'type': self.equipment_type,
+            'is_magical': type_data['info']['is_magical'],
+            'value': int(math.prod([json_dict['info']['value'] for json_dict in [class_data, type_data, collection_data]]))
+        }
+
+        equipment_stats = {
+            attr: sum([json_dict['stats'][attr] for json_dict in [class_data, type_data, collection_data]])
+            for attr in ['attack', 'defence', 'magic', 'agility']
+        }
+
+        return equipment_id, equipment_info, equipment_stats
 
     def equip_status(self,
                      equip: bool):

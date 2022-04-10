@@ -1,5 +1,5 @@
-from src.classes.maps import Map
-from src.classes.players import Player
+from classes.map import Map
+from classes.player import Player
 
 
 class Interface:

@@ -1,0 +1,341 @@
+{
+  "dagger": {
+    "id": 100,
+    "info": {
+      "name": "dagger",
+      "class": "weapon",
+      "type": "dagger",
+      "is_magical": false,
+      "value": 0.3
+    },
+    "stats": {
+      "attack": 5,
+      "defence": 0,
+      "magic": 0,
+      "agility": 10
+    }
+  },
+
+  "short_sword": {
+    "id": 200,
+    "info": {
+      "name": "short_sword",
+      "class": "weapon",
+      "type": "short_sword",
+      "is_magical": false,
+      "value": 0.6
+    },
+    "stats": {
+      "attack": 10,
+      "defence": 0,
+      "magic": 0,
+      "agility": 8
+    }
+  },
+    
+  "long_sword": {
+    "id": 300,
+    "info": {
+      "name": "long_sword",
+      "class": "weapon",
+      "type": "long_sword",
+      "is_magical": false,
+      "value": 1
+    },
+    "stats": {
+      "attack": 15,
+      "defence": 0,
+      "magic": 0,
+      "agility": 5
+    }
+  },
+    
+  "axe": {
+    "id": 400,
+    "info": {
+      "name": "axe",
+      "class": "weapon",
+      "type": "axe",
+      "is_magical": false,
+      "value": 1.2
+    },
+    "stats": {
+      "attack": 20,
+      "defence": 0,
+      "magic": 0,
+      "agility": 0
+    }
+  },
+    
+  "wand": {
+    "id": 500,
+    "info": {
+      "name": "wand",
+      "class": "weapon",
+      "type": "wand",
+      "is_magical": true,
+      "value": 1
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 0,
+      "magic": 20,
+      "agility": 0
+    }
+  },
+    
+  "staff": {
+    "id": 600,
+    "info": {
+      "name": "staff",
+      "class": "weapon",
+      "type": "staff",
+      "is_magical": true,
+      "value": 1.5
+    },
+    "stats": {
+      "attack": 10,
+      "defence": 0,
+      "magic": 15,
+      "agility": 0
+    }
+  },
+
+  "shirt": {
+    "id": 100,
+    "info": {
+      "name": "shirt",
+      "class": "body",
+      "type": "light",
+      "is_magical": false,
+      "value": 0.1
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 5,
+      "magic": 0,
+      "agility": 10
+    }
+  },
+
+  "chain_body": {
+    "id": 200,
+    "info": {
+      "name": "chain_mail",
+      "class": "body",
+      "type": "light",
+      "is_magical": false,
+      "value": 0.5
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 15,
+      "magic": 0,
+      "agility": 5
+    }
+  },
+
+  "plate_body": {
+    "id": 300,
+    "info": {
+      "name": "plate_mail",
+      "class": "body",
+      "type": "heavy",
+      "is_magical": false,
+      "value": 1.5
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 25,
+      "magic": 0,
+      "agility": 0
+    }
+  },
+
+  "robe_body": {
+    "id": 400,
+    "info": {
+      "name": "robe_top",
+      "class": "body",
+      "type": "light",
+      "is_magical": true,
+      "value": 1
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 5,
+      "magic": 10,
+      "agility": 5
+    }
+  },
+
+  "pants": {
+    "id": 100,
+    "info": {
+      "name": "pants",
+      "class": "legs",
+      "type": "light",
+      "is_magical": false,
+      "value": 0.1
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 3,
+      "magic": 0,
+      "agility": 6
+    }
+  },
+
+  "chain_legs": {
+    "id": 200,
+    "info": {
+      "name": "chain_greaves",
+      "class": "legs",
+      "type": "light",
+      "is_magical": false,
+      "value": 0.5
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 10,
+      "magic": 0,
+      "agility": 3
+    }
+  },
+
+  "plate_legs": {
+    "id": 300,
+    "info": {
+      "name": "plated_greaves",
+      "class": "legs",
+      "type": "heavy",
+      "is_magical": false,
+      "value": 1.5
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 15,
+      "magic": 0,
+      "agility": 0
+    }
+  },
+
+  "robe_legs": {
+    "id": 400,
+    "info": {
+      "name": "robe_bottom",
+      "class": "legs",
+      "type": "light",
+      "is_magical": true,
+      "value": 1
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 3,
+      "magic": 6,
+      "agility": 3
+    }
+  },
+
+  "hat": {
+    "id": 100,
+    "info": {
+      "name": "hat",
+      "class": "head",
+      "type": "light",
+      "is_magical": false,
+      "value": 0.1
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 2,
+      "magic": 0,
+      "agility": 4
+    }
+  },
+
+  "half_helmet": {
+    "id": 200,
+    "info": {
+      "name": "half_helmet",
+      "class": "head",
+      "type": "light",
+      "is_magical": false,
+      "value": 0.5
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 6,
+      "magic": 0,
+      "agility": 2
+    }
+  },
+
+  "full_helmet": {
+    "id": 300,
+    "info": {
+      "name": "full_helmet",
+      "class": "head",
+      "type": "heavy",
+      "is_magical": false,
+      "value": 1.5
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 10,
+      "magic": 0,
+      "agility": 0
+    }
+  },
+
+  "hood": {
+    "id": 400,
+    "info": {
+      "name": "hood",
+      "class": "head",
+      "type": "light",
+      "is_magical": true,
+      "value": 1
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 2,
+      "magic": 4,
+      "agility": 2
+    }
+  },
+
+  "buckler": {
+    "id": 100,
+    "info": {
+      "name": "buckler",
+      "class": "shield",
+      "type": "light",
+      "is_magical": false,
+      "value": 0.3
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 3,
+      "magic": 0,
+      "agility": 0
+    }
+  },
+
+  "kite_shield": {
+    "id": 200,
+    "info": {
+      "name": "kite_shield",
+      "class": "shield",
+      "type": "heavy",
+      "is_magical": false,
+      "value": 1
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 8,
+      "magic": 0,
+      "agility": 0
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "basic": {
+    "id": 10,
+    "info": {
+      "name": "",
+      "value": 0.1
+    },
+    "stats": {
+      "attack": 0,
+      "defence": 0,
+      "magic": 0,
+      "agility": 0
+    }
+  }
+}

@@ -1,16 +1,11 @@
 import json
+import os
 from tabulate import tabulate
 
-from src.classes.actions import ActionSet
-from src.classes.equipment import Equipment
+from classes.action import ActionSet
+from classes.equipment import Equipment
 
-with open('src/dicts/weapons.json', 'r') as file:
-    weapons = json.load(file)
-
-with open('src/dicts/armour.json', 'r') as file:
-    armour = json.load(file)
-
-with open('src/dicts/attributes.json', 'r') as file:
+with open('src/dicts/attribute.json', 'r') as file:
     attributes = json.load(file)
 
 
@@ -21,22 +16,23 @@ class PlayerInventory:
         self.player = player
         self.items = []
 
-        # ACTIONS
-        self.actions = ActionSet()
-        self.menu_pages = 1
-        self.menu_page = 0
-        self.menu_pages_before = False
-        self.menu_pages_after = True
-
-        self.menu_back = True
-        self.menu_equip = True
-
         # EQUIPMENT
         self.equipment_stats = {}
 
         # SET STARTING EQUIPMENT
-        [self.add_item(Equipment(item)) for item in weapons.values() if item['item_id'] in [1000, 1001, 1002]]
-        [self.add_item(Equipment(item)) for item in armour.values() if item['item_id'] in [2000, 2001, 2002, 3000, 3001, 3002, 4000, 4001, 4002]]
+        self.add_item(Equipment('dagger', 'basic'))
+        self.add_item(Equipment('shirt', 'basic'))
+        self.add_item(Equipment('pants', 'basic'))
+
+        # ACTIONS
+        self.actions = ActionSet()
+        self.menu_pages = len(self.items) // 9 + 1
+        self.menu_page = 0
+        self.menu_pages_before = False
+        self.menu_pages_after = True if len(self.items) > 9 else False
+
+        self.menu_back = True
+        self.menu_equip = True
 
     # INVENTORY OPERATIONS
     def add_item(self,
@@ -49,6 +45,8 @@ class PlayerInventory:
                             (1 + self.menu_page) * 9 if not (self.menu_page == self.menu_pages - 1)
                             else self.menu_page * 9 + len(self.items) % 9)
         print_items = [self.items[i] for i in print_range]
+
+        os.system('clear')
         print(tabulate([[self.items.index(item) + 1 - 9 * self.menu_page,
                          item.info['name'],
                          item.info['class'],
