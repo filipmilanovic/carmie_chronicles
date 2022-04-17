@@ -4,6 +4,7 @@ from tabulate import tabulate
 
 from classes.action import ActionSet
 from classes.equipment import Equipment
+from functions.action import quit_action
 
 with open('src/dicts/attribute.json', 'r') as file:
     attributes = json.load(file)
@@ -20,9 +21,9 @@ class PlayerInventory:
         self.equipment_stats = {}
 
         # SET STARTING EQUIPMENT
-        self.add_item(Equipment('dagger', 'basic'))
-        self.add_item(Equipment('shirt', 'basic'))
-        self.add_item(Equipment('pants', 'basic'))
+        self.add_item(Equipment('dagger', 'basic'), True)
+        self.add_item(Equipment('shirt', 'basic'), True)
+        self.add_item(Equipment('pants', 'basic'), True)
 
         # ACTIONS
         self.actions = ActionSet()
@@ -36,9 +37,12 @@ class PlayerInventory:
 
     # INVENTORY OPERATIONS
     def add_item(self,
-                 item):
+                 item,
+                 equip=False):
         self.items.append(item)
         self.menu_pages = 1 + len(self.items) // 9
+
+        item.equip_item(self.player, equip) if equip else None
 
     def print(self):
         print_range = range(self.menu_page * 9,
@@ -93,8 +97,7 @@ class PlayerInventory:
 
             # quit
             elif key_input == 'q':
-                print('Thanks for playing!')
-                quit()
+                quit_action()
         else:
             print("""Invalid Entry""")
             pass

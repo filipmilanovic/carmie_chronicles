@@ -1,6 +1,7 @@
 import json
 
 from classes.action import ActionSet
+from functions.action import quit_action
 
 with open('src/dicts/control.json', 'r') as file:
     controls = json.load(file)
@@ -73,8 +74,7 @@ class Cell:
 
             # quit
             elif key_input == 'q':
-                print('Thanks for playing!')
-                quit()
+                quit_action()
         else:
             print("""Invalid Entry""")
             pass

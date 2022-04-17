@@ -4,6 +4,7 @@ import os
 from tabulate import tabulate
 
 from classes.action import ActionSet
+from functions.action import quit_action
 
 with open('src/dicts/equipment_class.json', 'r') as file:
     classes = json.load(file)
@@ -66,13 +67,10 @@ class Equipment:
     def equip_item(self,
                    player,
                    equip: bool):
-        item_class = player.selected_item.info['class']
+        item_class = self.info['class']
         getattr(player, item_class).equip_status(False) if getattr(player, item_class) else None
         setattr(player, item_class, self)
         self.equip_status(equip)
-        player.path_to_screen.pop()
-        player.current_screen = player.path_to_screen[-1]
-        player.player_inventory.set_equipment_stats()
 
     # PLAYER ACTIONS
     def set_actions(self):
@@ -98,6 +96,10 @@ class Equipment:
             elif key_input == 'b':
                 player.path_to_screen.pop()
                 player.current_screen = player.path_to_screen[-1]
+
+            # quit
+            elif key_input == 'q':
+                quit_action()
         else:
             print("""Invalid Entry""")
             pass
