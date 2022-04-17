@@ -32,7 +32,7 @@ class Equipment:
         self.menu_unequip = False
 
     # ITEM OPERATIONS
-    def print(self):
+    def print_screen(self):
         os.system('clear')
         print(tabulate([row for row in (self.info | self.stats).items()], headers=['key', 'value']))
     

@@ -54,6 +54,6 @@ class Map:
             if cell < (self.cols-1) * self.rows:
                 current_cell.south_hash = self.cells[cell + self.cols].hash
 
-    def print(self):
+    def print_screen(self):
         os.system('clear')
         print(self.grid)

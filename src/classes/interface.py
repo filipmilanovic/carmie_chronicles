@@ -21,7 +21,7 @@ class Interface:
         self.player = Player(self.map)
 
     def get_actions(self):
-        self.player.current_screen.print()
+        self.player.current_screen.print_screen()
         print(f'What would you like to do? {self.player.get_actions()}')
 
     def perform_action(self,

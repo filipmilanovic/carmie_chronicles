@@ -44,7 +44,7 @@ class PlayerInventory:
 
         item.equip_item(self.player, equip) if equip else None
 
-    def print(self):
+    def print_screen(self):
         print_range = range(self.menu_page * 9,
                             (1 + self.menu_page) * 9 if not (self.menu_page == self.menu_pages - 1)
                             else self.menu_page * 9 + len(self.items) % 9)
