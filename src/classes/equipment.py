@@ -78,7 +78,7 @@ class Equipment:
         self.actions.set_actions(self)
 
     def perform_action(self,
-                       player,
+                       interface,
                        key_input: str):
         """perform requested action in the Cell"""
         action_buttons = self.actions.actions_buttons
@@ -87,15 +87,15 @@ class Equipment:
         if key_input in action_buttons:
             # equip item
             if key_input == 'e':
-                self.equip_item(player, True)
+                self.equip_item(interface.player, True)
 
             if key_input == 'u':
-                self.equip_item(player, False)
+                self.equip_item(interface.player, False)
 
             # back
             elif key_input == 'b':
-                player.path_to_screen.pop()
-                player.current_screen = player.path_to_screen[-1]
+                interface.path_to_screen.pop()
+                interface.current_screen = interface.path_to_screen[-1]
 
             # quit
             elif key_input == 'q':

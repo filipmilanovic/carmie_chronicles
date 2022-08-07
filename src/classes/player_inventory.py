@@ -27,6 +27,7 @@ class PlayerInventory:
 
         # ACTIONS
         self.actions = ActionSet()
+        self.selected_item = None
         self.menu_pages = len(self.items) // 9 + 1
         self.menu_page = 0
         self.menu_pages_before = False
@@ -65,6 +66,7 @@ class PlayerInventory:
         self.actions.set_actions(self)
 
     def perform_action(self,
+                       interface,
                        key_input: str):
         """perform requested action in the Cell"""
         action_buttons = self.actions.actions_buttons
@@ -73,9 +75,9 @@ class PlayerInventory:
         if key_input in action_buttons:
             # item selection
             if key_input.isnumeric():
-                self.player.selected_item = self.items[int(key_input) - 1 + 9 * self.menu_page]
-                self.player.path_to_screen.append(self.player.selected_item)
-                self.player.current_screen = self.player.selected_item
+                self.selected_item = self.items[int(key_input) - 1 + 9 * self.menu_page]
+                interface.path_to_screen.append(self.selected_item)
+                interface.current_screen = self.selected_item
 
             elif key_input == '.':
                 self.menu_page = self.menu_page + 1
@@ -92,8 +94,8 @@ class PlayerInventory:
 
             # back
             elif key_input == 'b':
-                self.player.path_to_screen.pop()
-                self.player.current_screen = self.player.path_to_screen[-1]
+                interface.path_to_screen.pop()
+                interface.current_screen = interface.path_to_screen[-1]
 
             # quit
             elif key_input == 'q':
@@ -111,20 +113,3 @@ class PlayerInventory:
                      self.player.legs]
         self.equipment_stats = {attr['name']: sum([item.stats[attr['name']] for item in equipment if item])
                                 for attr in attributes.values() if attr['equipment']}
-
-#     def show_equipment(self):
-#         print(f'''
-#            ___      {self.player.head.info['name'] if self.player.head else None}
-#           |   |
-#           |   |   |
-#            ---    | {self.player.weapon.info['name'] if self.player.weapon else None}
-#             |     |
-#        -----------|
-#             |
-#             |       {self.player.body.info['name'] if self.player.body else None}
-#             |
-#            / \\
-#           /   \\     {self.player.legs.info['name'] if self.player.legs else None}
-#          /     \\
-#
-# {print(self.equipment_stats)}''')

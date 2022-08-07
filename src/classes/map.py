@@ -2,7 +2,7 @@ import numpy as np
 import os
 from random import sample
 
-from classes.cell import Cell
+from classes.map_cell import MapCell
 
 map_dict = {}
 
@@ -29,7 +29,7 @@ class Map:
 
     def generate_cells(self):
         """generate the Cells to populate the Map given the size of the grid"""
-        self.cells = [Cell() for i in range(0, self.rows * self.cols)]
+        self.cells = [MapCell() for i in range(0, self.rows * self.cols)]
 
     def generate_towns(self,
                        number_towns: int):
