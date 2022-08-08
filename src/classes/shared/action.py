@@ -1,6 +1,3 @@
-import os
-print(os.getcwd())
-
 import json
 
 with open('src/dicts/control.json', 'r') as file:

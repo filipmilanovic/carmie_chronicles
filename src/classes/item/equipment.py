@@ -4,6 +4,7 @@ import os
 from tabulate import tabulate
 
 from classes.shared.action import ActionSet
+
 from functions.action import quit_action
 
 with open('src/dicts/equipment_class.json', 'r') as file:

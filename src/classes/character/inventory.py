@@ -3,7 +3,7 @@ import os
 from tabulate import tabulate
 
 from classes.shared.action import ActionSet
-from classes.items.equipment import Equipment
+from classes.item.equipment import Equipment
 
 from functions.action import quit_action
 
