@@ -1,9 +1,8 @@
 import json
-import os
-from tabulate import tabulate
 
 from classes.shared.action import ActionSet
 from classes.item.equipment import Equipment
+from gui.inventory import GUIInventory
 
 from functions.action import quit_action
 
@@ -14,6 +13,7 @@ with open('src/dicts/attribute.json', 'r') as file:
 class Inventory:
     def __init__(self):
         self.hash = hash(self)
+        self.gui = GUIInventory(self)
         self.items = []
 
         # EQUIPMENT
@@ -35,24 +35,9 @@ class Inventory:
                  item,
                  equip=False):
         self.items.append(item)
-        print(self.items)
         self.menu_pages = 1 + len(self.items) // 9
 
         item.equip_item(character, equip) if equip else None
-
-    def print_screen(self):
-        print_range = range(self.menu_page * 9,
-                            (1 + self.menu_page) * 9 if not (self.menu_page == self.menu_pages - 1)
-                            else self.menu_page * 9 + len(self.items) % 9)
-        print_items = [self.items[i] for i in print_range]
-
-        os.system('clear')
-        print(tabulate([[self.items.index(item) + 1 - 9 * self.menu_page,
-                         item.info['name'],
-                         item.info['class'],
-                         item.is_equipped]
-                        for item in print_items],
-                       headers=['name', 'class', 'equipped']))
 
     # PLAYER ACTIONS
     def set_actions(self):

@@ -7,7 +7,6 @@ with open('src/dicts/control.json', 'r') as file:
 class ActionSet:
     def __init__(self):
         self.hash = hash(self)
-        self.action_type = None
         self.actions_buttons = None
         self.actions_display = None
 

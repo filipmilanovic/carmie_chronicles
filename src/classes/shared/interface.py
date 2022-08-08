@@ -1,4 +1,5 @@
 import json
+import os
 
 from classes.map.map import Map
 from classes.character.player import Player
@@ -16,7 +17,6 @@ class Interface:
         # CURRENT GAME STATUS
         self.current_screen = None
         self.path_to_screen = []
-        self.actions = None
 
     # OBJECT GENERATION
     def generate_map(self,
@@ -36,7 +36,8 @@ class Interface:
     def get_actions(self):
         action_attribute = screen_map[self.current_screen.__class__.__name__]
 
-        self.current_screen.print_screen()
+        os.system('clear')
+        self.current_screen.gui.print_screen()
 
         action_object = getattr(self.current_screen, action_attribute) if action_attribute else self.current_screen
         action_object.set_actions()

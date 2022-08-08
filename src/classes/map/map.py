@@ -1,8 +1,8 @@
 import numpy as np
-import os
 from random import choice, sample
 
 from classes.map.cell import Cell
+from gui.map import GUIMap
 
 map_dict = {}
 
@@ -17,6 +17,7 @@ class Map:
                  towns: int):
         self.hash = hash(self)
         map_dict[self.hash] = self
+        self.gui = GUIMap(self)
 
         # MAP SPECIFICATIONS
         self.rows = rows
@@ -61,7 +62,3 @@ class Map:
                 current_cell.north_hash = self.cells[cell - self.cols].hash
             if cell < (self.cols-1) * self.rows:
                 current_cell.south_hash = self.cells[cell + self.cols].hash
-
-    def print_screen(self):
-        os.system('clear')
-        print(self.grid)

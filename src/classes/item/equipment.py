@@ -1,9 +1,8 @@
 import json
 import math
-import os
-from tabulate import tabulate
 
 from classes.shared.action import ActionSet
+from gui.equipment import GUIEquipment
 
 from functions.action import quit_action
 
@@ -22,6 +21,8 @@ class Equipment:
                  equipment_type,
                  equipment_collection):
         self.hash = hash(self)
+        self.gui = GUIEquipment(self)
+
         self.equipment_type = equipment_type
         self.equipment_collection = equipment_collection
         self.id, self.info, self.stats = self.set_equipment_details()
@@ -33,10 +34,6 @@ class Equipment:
         self.menu_unequip = False
 
     # ITEM OPERATIONS
-    def print_screen(self):
-        os.system('clear')
-        print(tabulate([row for row in (self.info | self.stats).items()], headers=['key', 'value']))
-    
     def set_equipment_details(self):
         collection_data = collections[self.equipment_collection]
         type_data = types[self.equipment_type]
