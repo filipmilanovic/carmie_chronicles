@@ -4,7 +4,7 @@ import math
 from classes.shared.action import ActionSet
 from gui.equipment import GUIEquipment
 
-from functions.action import quit_action
+from functions.action import back_action, quit_action
 
 with open('src/dicts/equipment_class.json', 'r') as file:
     classes = json.load(file)
@@ -92,8 +92,7 @@ class Equipment:
 
             # back
             elif key_input == 'b':
-                interface.path_to_screen.pop()
-                interface.current_screen = interface.path_to_screen[-1]
+                back_action(interface)
 
             # quit
             elif key_input == 'q':

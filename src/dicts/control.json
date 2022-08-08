@@ -79,6 +79,11 @@
     "display": "<U>nequip",
     "requirement": "menu_unequip"
   },
+  "attributes": {
+    "button": "m",
+    "display": "<M> Attributes",
+    "requirement": "menu_attributes"
+  },
   "trade": {
     "button": "t",
     "display": "<T>rade",

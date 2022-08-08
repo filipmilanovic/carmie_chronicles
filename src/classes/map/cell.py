@@ -2,7 +2,7 @@ import json
 
 from classes.shared.action import ActionSet
 
-from functions.action import quit_action
+from functions.action import attributes_action, inventory_action, quit_action, trade_action
 
 with open('src/dicts/control.json', 'r') as file:
     controls = json.load(file)
@@ -27,6 +27,7 @@ class Cell:
 
         self.actions = ActionSet()
         self.menu_items = True
+        self.menu_attributes = True
 
     # CELL OPERATIONS
     def update_appearance(self,
@@ -66,12 +67,15 @@ class Cell:
 
             # inventory
             elif key_input == 'i':
-                interface.current_screen = interface.player.inventory
-                interface.path_to_screen.append(interface.player.inventory)
-
+                inventory_action(interface)
+            
+            # player attributes
+            elif key_input == 'm':
+                attributes_action(interface)
+                
             # trade
             elif key_input == 't':
-                print('Trade not currently available')
+                trade_action(interface)
 
             # quit
             elif key_input == 'q':

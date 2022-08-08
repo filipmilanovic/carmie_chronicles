@@ -4,7 +4,7 @@ from classes.shared.action import ActionSet
 from classes.item.equipment import Equipment
 from gui.inventory import GUIInventory
 
-from functions.action import quit_action
+from functions.action import attributes_action, back_action, quit_action
 
 with open('src/dicts/attribute.json', 'r') as file:
     attributes = json.load(file)
@@ -28,6 +28,7 @@ class Inventory:
         self.menu_pages_after = True if len(self.items) > 9 else False
 
         self.menu_back = True
+        self.menu_attributes = True
 
     # INVENTORY OPERATIONS
     def add_item(self,
@@ -71,11 +72,14 @@ class Inventory:
 
             elif key_input == 'e':
                 print(self.equipment_stats)
+            
+            # attributes
+            elif key_input == 'm':
+                attributes_action(interface)
 
             # back
             elif key_input == 'b':
-                interface.path_to_screen.pop()
-                interface.current_screen = interface.path_to_screen[-1]
+                back_action(interface)
 
             # quit
             elif key_input == 'q':

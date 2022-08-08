@@ -4,9 +4,6 @@ from random import choice, sample
 from classes.map.cell import Cell
 from gui.map import GUIMap
 
-map_dict = {}
-
-
 class Map:
     """Map class object, comprised of a series of Cells to generate a grid"""
     instances = []
@@ -16,7 +13,6 @@ class Map:
                  cols: int,
                  towns: int):
         self.hash = hash(self)
-        map_dict[self.hash] = self
         self.gui = GUIMap(self)
 
         # MAP SPECIFICATIONS
