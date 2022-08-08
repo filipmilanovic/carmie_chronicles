@@ -4,7 +4,7 @@ from classes.shared.action import ActionSet
 from classes.item.equipment import Equipment
 from gui.inventory import GUIInventory
 
-from functions.action import attributes_action, back_action, quit_action
+from functions.action import attributes_action, back_action, page_next_action, page_previous_action, quit_action
 
 with open('src/dicts/attribute.json', 'r') as file:
     attributes = json.load(file)
@@ -37,6 +37,7 @@ class Inventory:
                  equip=False):
         self.items.append(item)
         self.menu_pages = 1 + len(self.items) // 9
+        self.menu_pages_after = True if self.menu_pages > 1 else False
 
         item.equip_item(character, equip) if equip else None
 
@@ -61,14 +62,10 @@ class Inventory:
                 interface.current_screen = self.selected_item
 
             elif key_input == '.':
-                self.menu_page = self.menu_page + 1
-                self.menu_pages_after = False if self.menu_page == self.menu_pages - 1 else True
-                self.menu_pages_before = True
+                page_next_action(self)
 
             elif key_input == ',':
-                self.menu_page = self.menu_page - 1
-                self.menu_pages_before = False if self.menu_page == 0 else True
-                self.menu_pages_after = True
+                page_previous_action(self)
 
             elif key_input == 'e':
                 print(self.equipment_stats)
