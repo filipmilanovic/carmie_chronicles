@@ -2,28 +2,22 @@ import json
 import os
 from tabulate import tabulate
 
-from classes.action import ActionSet
-from classes.equipment import Equipment
+from classes.shared.action import ActionSet
+from classes.items.equipment import Equipment
+
 from functions.action import quit_action
 
 with open('src/dicts/attribute.json', 'r') as file:
     attributes = json.load(file)
 
 
-class PlayerInventory:
-    def __init__(self,
-                 player):
+class Inventory:
+    def __init__(self):
         self.hash = hash(self)
-        self.player = player
         self.items = []
 
         # EQUIPMENT
         self.equipment_stats = {}
-
-        # SET STARTING EQUIPMENT
-        self.add_item(Equipment('dagger', 'basic'), True)
-        self.add_item(Equipment('shirt', 'basic'), True)
-        self.add_item(Equipment('pants', 'basic'), True)
 
         # ACTIONS
         self.actions = ActionSet()
@@ -34,16 +28,17 @@ class PlayerInventory:
         self.menu_pages_after = True if len(self.items) > 9 else False
 
         self.menu_back = True
-        self.menu_equip = True
 
     # INVENTORY OPERATIONS
     def add_item(self,
+                 character,
                  item,
                  equip=False):
         self.items.append(item)
+        print(self.items)
         self.menu_pages = 1 + len(self.items) // 9
 
-        item.equip_item(self.player, equip) if equip else None
+        item.equip_item(character, equip) if equip else None
 
     def print_screen(self):
         print_range = range(self.menu_page * 9,

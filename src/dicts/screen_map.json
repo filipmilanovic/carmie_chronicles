@@ -1,5 +1,5 @@
 {
     "Map": "current_cell",
-    "PlayerInventory": "player.player_inventory",
-    "Equipment": "player.player_inventory.selected_item"
+    "Inventory": "",
+    "Equipment": ""
 }

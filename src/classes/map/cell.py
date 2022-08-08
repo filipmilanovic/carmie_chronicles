@@ -1,6 +1,7 @@
 import json
 
-from classes.action import ActionSet
+from classes.shared.action import ActionSet
+
 from functions.action import quit_action
 
 with open('src/dicts/control.json', 'r') as file:
@@ -9,8 +10,8 @@ with open('src/dicts/control.json', 'r') as file:
 map_cell_dict = {}
 
 
-class MapCell:
-    """a MapCell class object denoting one region on the Map"""
+class Cell:
+    """a Cell class object denoting one region on the Map"""
     instances = []
 
     def __init__(self):
@@ -59,14 +60,14 @@ class MapCell:
                 new_location_hash = self.__dict__[direction]
                 if new_location_hash:
                     self.update_appearance(False)
-                    interface.current_cell = map_cell_dict[new_location_hash]
-                    interface.current_cell.update_appearance(True)
+                    interface.map.current_cell = map_cell_dict[new_location_hash]
+                    interface.map.current_cell.update_appearance(True)
                     interface.map.generate_grid()
 
             # inventory
             elif key_input == 'i':
-                interface.current_screen = interface.player.player_inventory
-                interface.path_to_screen.append(interface.player.player_inventory)
+                interface.current_screen = interface.player.inventory
+                interface.path_to_screen.append(interface.player.inventory)
 
             # trade
             elif key_input == 't':

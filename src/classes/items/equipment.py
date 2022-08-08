@@ -3,7 +3,7 @@ import math
 import os
 from tabulate import tabulate
 
-from classes.action import ActionSet
+from classes.shared.action import ActionSet
 from functions.action import quit_action
 
 with open('src/dicts/equipment_class.json', 'r') as file:
@@ -65,11 +65,11 @@ class Equipment:
         self.menu_equip = 1 - self.menu_unequip
 
     def equip_item(self,
-                   player,
+                   character,
                    equip: bool):
         item_class = self.info['class']
-        getattr(player, item_class).equip_status(False) if getattr(player, item_class) else None
-        setattr(player, item_class, self)
+        getattr(character, item_class).equip_status(False) if getattr(character, item_class) else None
+        setattr(character, item_class, self)
         self.equip_status(equip)
 
     # PLAYER ACTIONS

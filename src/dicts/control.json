@@ -69,7 +69,7 @@
     "display": "<I>tems",
     "requirement": "menu_items"
   },
-  "equipment": {
+  "equip": {
     "button": "e",
     "display": "<E>quip",
     "requirement": "menu_equip"

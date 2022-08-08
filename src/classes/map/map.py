@@ -1,8 +1,8 @@
 import numpy as np
 import os
-from random import sample
+from random import choice, sample
 
-from classes.map_cell import MapCell
+from classes.map.cell import Cell
 
 map_dict = {}
 
@@ -17,19 +17,27 @@ class Map:
                  towns: int):
         self.hash = hash(self)
         map_dict[self.hash] = self
+
+        # MAP SPECIFICATIONS
         self.rows = rows
         self.cols = cols
         self.cells = None
         self.grid = None
 
+        # MAP GENERATION
         self.generate_cells()
         self.generate_towns(towns)
         self.generate_grid()
         self.link_cells()
 
+        # MAP STARTING POINT
+        self.current_cell = choice(self.cells)
+        self.current_cell.update_appearance(True)
+        self.generate_grid()
+
     def generate_cells(self):
         """generate the Cells to populate the Map given the size of the grid"""
-        self.cells = [MapCell() for i in range(0, self.rows * self.cols)]
+        self.cells = [Cell() for i in range(0, self.rows * self.cols)]
 
     def generate_towns(self,
                        number_towns: int):
