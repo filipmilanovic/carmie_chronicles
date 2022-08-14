@@ -4,8 +4,6 @@ from classes.shared.action import ActionSet
 
 from gui.attributes import GUIAttributes
 
-from functions.action import back_action, quit_action
-
 with open('src/dicts/attribute.json', 'r') as file:
     attributes = json.load(file)
 
@@ -29,10 +27,14 @@ class Attributes:
     def perform_action(self,
                        interface,
                        key_input: str):
-        # back
-        if key_input == 'b':
-            back_action(interface)
+        key_input = key_input.lower()
 
-        # quit
-        elif key_input == 'q':
-            quit_action()
+        if key_input in self.actions.actions_buttons:
+            kwargs = {'target_object': self,
+                        'interface': interface}
+            # generic actions
+            self.actions.perform_action(key_input, **kwargs)
+        
+        else:
+            print("""Invalid Entry""")
+            pass

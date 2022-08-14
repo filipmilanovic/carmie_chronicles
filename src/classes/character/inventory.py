@@ -4,8 +4,6 @@ from classes.shared.action import ActionSet
 from classes.item.equipment import Equipment
 from gui.inventory import GUIInventory
 
-from functions.action import attributes_action, back_action, page_next_action, page_previous_action, quit_action
-
 with open('src/dicts/attribute.json', 'r') as file:
     attributes = json.load(file)
 
@@ -54,33 +52,18 @@ class Inventory:
         action_buttons = self.actions.actions_buttons
         key_input = key_input.lower()
 
-        if key_input in action_buttons:
-            # item selection
+        if key_input in self.actions.actions_buttons:
             if key_input.isnumeric():
+                # item selection
                 self.selected_item = self.items[int(key_input) - 1 + 9 * self.menu_page]
                 interface.path_to_screen.append(self.selected_item)
                 interface.current_screen = self.selected_item
-
-            elif key_input == '.':
-                page_next_action(self)
-
-            elif key_input == ',':
-                page_previous_action(self)
-
-            elif key_input == 'e':
-                print(self.equipment_stats)
-            
-            # attributes
-            elif key_input == 'm':
-                attributes_action(interface)
-
-            # back
-            elif key_input == 'b':
-                back_action(interface)
-
-            # quit
-            elif key_input == 'q':
-                quit_action()
+            else:
+                kwargs = {'target_object': self,
+                          'interface': interface}
+                # generic actions
+                self.actions.perform_action(key_input, **kwargs)
+        
         else:
             print("""Invalid Entry""")
             pass

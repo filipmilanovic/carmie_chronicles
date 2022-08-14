@@ -4,8 +4,6 @@ import math
 from classes.shared.action import ActionSet
 from gui.equipment import GUIEquipment
 
-from functions.action import back_action, quit_action
-
 with open('src/dicts/equipment_class.json', 'r') as file:
     classes = json.load(file)
 
@@ -87,16 +85,14 @@ class Equipment:
             if key_input == 'e':
                 self.equip_item(interface.player, True)
 
-            if key_input == 'u':
+            elif key_input == 'u':
                 self.equip_item(interface.player, False)
-
-            # back
-            elif key_input == 'b':
-                back_action(interface)
-
-            # quit
-            elif key_input == 'q':
-                quit_action()
+            
+            else:
+                kwargs = {'target_object': self,
+                          'interface': interface}
+                # generic actions
+                self.actions.perform_action(key_input, **kwargs)
         else:
             print("""Invalid Entry""")
             pass

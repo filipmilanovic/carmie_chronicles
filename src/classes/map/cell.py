@@ -1,12 +1,9 @@
-import json
+import yaml
 
 from classes.shared.action import ActionSet
 
-from functions.action import attributes_action, inventory_action, quit_action, trade_action
-
-with open('src/dicts/control.json', 'r') as file:
-    controls = json.load(file)
-
+with open('src/dicts/control.yaml', 'r') as file:
+    controls = yaml.safe_load(file)
 map_cell_dict = {}
 
 
@@ -26,7 +23,7 @@ class Cell:
         self.is_town = None
 
         self.actions = ActionSet()
-        self.menu_items = True
+        self.menu_inventory = True
         self.menu_attributes = True
 
     # CELL OPERATIONS
@@ -51,12 +48,11 @@ class Cell:
                        interface,
                        key_input: str):
         """perform requested action in the Cell"""
-        action_buttons = self.actions.actions_buttons
         key_input = key_input.lower()
 
-        if key_input in action_buttons:
-            # directions
+        if key_input in self.actions.actions_buttons:
             if key_input in ('w', 'a', 's', 'd'):
+                # movement
                 direction = [action['requirement'] for action in controls.values() if action['button'] == key_input][0]
                 new_location_hash = self.__dict__[direction]
                 if new_location_hash:
@@ -64,22 +60,12 @@ class Cell:
                     interface.map.current_cell = map_cell_dict[new_location_hash]
                     interface.map.current_cell.update_appearance(True)
                     interface.map.generate_grid()
-
-            # inventory
-            elif key_input == 'i':
-                inventory_action(interface)
-            
-            # player attributes
-            elif key_input == 'm':
-                attributes_action(interface)
-                
-            # trade
-            elif key_input == 't':
-                trade_action(interface)
-
-            # quit
-            elif key_input == 'q':
-                quit_action()
+            else:
+                kwargs = {'target_object': self,
+                          'interface': interface}
+                # generic actions
+                self.actions.perform_action(key_input, **kwargs)
+        
         else:
             print("""Invalid Entry""")
             pass

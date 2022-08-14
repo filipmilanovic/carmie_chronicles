@@ -36,7 +36,6 @@ class Interface:
     def get_actions(self):
         action_attribute = screen_map[self.current_screen.__class__.__name__]
 
-        os.system('clear')
         self.current_screen.gui.print_screen()
 
         action_object = getattr(self.current_screen, action_attribute) if action_attribute else self.current_screen
@@ -45,6 +44,8 @@ class Interface:
 
     def perform_action(self,
                        key_input: str):
+        os.system('clear')
+        
         action_attribute = screen_map[self.current_screen.__class__.__name__]
 
         action_object = getattr(self.current_screen, action_attribute) if action_attribute else self.current_screen
