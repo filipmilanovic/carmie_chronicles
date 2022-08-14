@@ -1,5 +1,4 @@
 import json
-import os
 
 from classes.map.map import Map
 from classes.character.player import Player
@@ -44,8 +43,6 @@ class Interface:
 
     def perform_action(self,
                        key_input: str):
-        os.system('clear')
-        
         action_attribute = screen_map[self.current_screen.__class__.__name__]
 
         action_object = getattr(self.current_screen, action_attribute) if action_attribute else self.current_screen
