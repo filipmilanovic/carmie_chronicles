@@ -35,10 +35,10 @@ class Interface:
     def get_actions(self):
         action_attribute = screen_map[self.current_screen.__class__.__name__]
 
-        self.current_screen.gui.print_screen()
-
         action_object = getattr(self.current_screen, action_attribute) if action_attribute else self.current_screen
         action_object.set_actions()
+
+        self.current_screen.gui.print_screen()
         print(f'What would you like to do? {action_object.actions.actions_display}')
 
     def perform_action(self,

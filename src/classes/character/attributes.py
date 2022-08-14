@@ -31,7 +31,7 @@ class Attributes:
 
         if key_input in self.actions.actions_buttons:
             kwargs = {'target_object': self,
-                        'interface': interface}
+                      'interface': interface}
             # generic actions
             self.actions.perform_action(key_input, **kwargs)
         
