@@ -1,10 +1,8 @@
 import json
 import math
-import os
-from tabulate import tabulate
 
-from classes.action import ActionSet
-from functions.action import quit_action
+from classes.shared.action import ActionSet
+from gui.equipment import GUIEquipment
 
 with open('src/dicts/equipment_class.json', 'r') as file:
     classes = json.load(file)
@@ -21,6 +19,8 @@ class Equipment:
                  equipment_type,
                  equipment_collection):
         self.hash = hash(self)
+        self.gui = GUIEquipment(self)
+
         self.equipment_type = equipment_type
         self.equipment_collection = equipment_collection
         self.id, self.info, self.stats = self.set_equipment_details()
@@ -32,10 +32,6 @@ class Equipment:
         self.menu_unequip = False
 
     # ITEM OPERATIONS
-    def print_screen(self):
-        os.system('clear')
-        print(tabulate([row for row in (self.info | self.stats).items()], headers=['key', 'value']))
-    
     def set_equipment_details(self):
         collection_data = collections[self.equipment_collection]
         type_data = types[self.equipment_type]
@@ -65,11 +61,11 @@ class Equipment:
         self.menu_equip = 1 - self.menu_unequip
 
     def equip_item(self,
-                   player,
+                   character,
                    equip: bool):
         item_class = self.info['class']
-        getattr(player, item_class).equip_status(False) if getattr(player, item_class) else None
-        setattr(player, item_class, self)
+        getattr(character, item_class).equip_status(False) if getattr(character, item_class) else None
+        setattr(character, item_class, self)
         self.equip_status(equip)
 
     # PLAYER ACTIONS
@@ -78,7 +74,7 @@ class Equipment:
         self.actions.set_actions(self)
 
     def perform_action(self,
-                       player,
+                       interface,
                        key_input: str):
         """perform requested action in the Cell"""
         action_buttons = self.actions.actions_buttons
@@ -87,19 +83,16 @@ class Equipment:
         if key_input in action_buttons:
             # equip item
             if key_input == 'e':
-                self.equip_item(player, True)
+                self.equip_item(interface.player, True)
 
-            if key_input == 'u':
-                self.equip_item(player, False)
-
-            # back
-            elif key_input == 'b':
-                player.path_to_screen.pop()
-                player.current_screen = player.path_to_screen[-1]
-
-            # quit
-            elif key_input == 'q':
-                quit_action()
+            elif key_input == 'u':
+                self.equip_item(interface.player, False)
+            
+            else:
+                kwargs = {'target_object': self,
+                          'interface': interface}
+                # generic actions
+                self.actions.perform_action(key_input, **kwargs)
         else:
             print("""Invalid Entry""")
             pass

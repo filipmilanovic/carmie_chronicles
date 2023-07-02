@@ -1,11 +1,8 @@
 import numpy as np
-import os
-from random import sample
+from random import choice, sample
 
-from classes.cell import Cell
-
-map_dict = {}
-
+from classes.map.cell import Cell
+from gui.map import GUIMap
 
 class Map:
     """Map class object, comprised of a series of Cells to generate a grid"""
@@ -16,16 +13,24 @@ class Map:
                  cols: int,
                  towns: int):
         self.hash = hash(self)
-        map_dict[self.hash] = self
+        self.gui = GUIMap(self)
+
+        # MAP SPECIFICATIONS
         self.rows = rows
         self.cols = cols
         self.cells = None
         self.grid = None
 
+        # MAP GENERATION
         self.generate_cells()
         self.generate_towns(towns)
         self.generate_grid()
         self.link_cells()
+
+        # MAP STARTING POINT
+        self.current_cell = choice(self.cells)
+        self.current_cell.update_appearance(True)
+        self.generate_grid()
 
     def generate_cells(self):
         """generate the Cells to populate the Map given the size of the grid"""
@@ -53,7 +58,3 @@ class Map:
                 current_cell.north_hash = self.cells[cell - self.cols].hash
             if cell < (self.cols-1) * self.rows:
                 current_cell.south_hash = self.cells[cell + self.cols].hash
-
-    def print_screen(self):
-        os.system('clear')
-        print(self.grid)
